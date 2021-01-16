@@ -9,24 +9,23 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 
+import android.content.Intent;
+import android.net.Uri;
+
 @NativePlugin
 public class OpenGmaps extends Plugin {
 
     @PluginMethod
-    public void openMaps(PluginCall call) {
+    public void openNavigation(PluginCall call) {
 
-        PackageManager packageManager = this.bridge.getActivity().getPackageManager();
-        String appName = "";
+        String query = call.getString("query");
 
-        try {
-            ApplicationInfo app = packageManager.getApplicationInfo(this.bridge.getActivity().getPackageName(), 0);
-            appName = (String)packageManager.getApplicationLabel(app);
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
-
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + query);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        getContext().startActivity(mapIntent);
         JSObject res = new JSObject();
-        res.put("appName", appName);
+        res.put("result", true);
         call.success(res);
         
     }

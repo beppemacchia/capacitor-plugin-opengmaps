@@ -1,5 +1,5 @@
 import { WebPlugin, registerWebPlugin } from '@capacitor/core';
-import { OpenGmapsPlugin } from './definitions';
+import { OpenGmapsPlugin, OpenGmapsRequest, OpenGmapsResponse } from './definitions';
 
 export class OpenGmapsWeb extends WebPlugin implements OpenGmapsPlugin {
   constructor() {
@@ -9,8 +9,11 @@ export class OpenGmapsWeb extends WebPlugin implements OpenGmapsPlugin {
     });
   }
 
-  async openMaps(): Promise<{ appName: string }> {
-    return { appName: "" };
+  async openNavigation(options: OpenGmapsRequest): Promise<OpenGmapsResponse> {
+    console.log(options);
+    return {
+      result: true
+    };
   }
 
 }

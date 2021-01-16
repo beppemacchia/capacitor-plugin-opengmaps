@@ -1,6 +1,6 @@
-# App Version SDK for Capacitor
+# Google Maps App opener for Capacitor
 
-Reads the version of your app from the target build settings.
+Open Google Maps App on device.
 
 ## Installation
 
@@ -29,7 +29,16 @@ public class MainActivity extends BridgeActivity {
 
 ### iOS
 
-No further steps are needed
+Add this line to Info.plist:
+```bash
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>googlechromes</string>
+      <string>comgooglemapsurl</string>
+      <string>comgooglemaps</string>
+      <string>comgooglemaps-x-callback</string>
+</array>
+```
 
 ## Usage
 
@@ -40,15 +49,14 @@ import { Plugins } from '@capacitor/core';
 
 const { OpenGmaps } = Plugins;
 
-const getAllInfo = async () => {
-  const appName = await OpenGmaps.getAppName();
-  const packageName = await OpenGmaps.getPackageName();
-  const versionNumber = await OpenGmaps.getVersionNumber();
-  const versionCode = await OpenGmaps.getVersionCode();
-
-  console.log("App Name: ", appName.appName);
-  console.log("Package Name: ", packageName.packageName);
-  console.log("Version Number: ", versionNumber.versionNumber);
-  console.log("Version Code: ", versionCode.versionCode);
+const request = {
+  query: 'Via Roma 15, Lecce' // address or coordinates
 };
+
+Plugins.OpenGmaps.openNavigation(request).then((result) => {
+  console.log('Result open gmaps', result);
+}).catch((error) => {
+  console.error('Error open gmaps', error);
+});
+
 ```
