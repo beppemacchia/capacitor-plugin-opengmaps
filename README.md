@@ -3,60 +3,49 @@
 Open Google Maps App on device.
 
 ## Installation
+Build and install yourself
 
-### Android
+## API
 
-Register the plugin in your main activity:
+<docgen-index>
 
-```bash
-// Other imports...
-import com.cuvify.plugins.opengmaps.OpenGmaps;
+* [`openNavigation(...)`](#opennavigation)
+* [Interfaces](#interfaces)
 
-public class MainActivity extends BridgeActivity {
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+</docgen-index>
 
-    // Initializes the Bridge
-    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-      // Additional plugins you have installed go here
-      // Ex: add(TotallyAwesomePlugin.class);
-      add(OpenGmaps.class);
-    }});
-  }
-}
-```
+<docgen-api>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### iOS
-
-Add this line to Info.plist:
-```bash
-<key>LSApplicationQueriesSchemes</key>
-<array>
-  <string>googlechromes</string>
-      <string>comgooglemapsurl</string>
-      <string>comgooglemaps</string>
-      <string>comgooglemaps-x-callback</string>
-</array>
-```
-
-## Usage
-
-To use the plugin, import and use it like this:
+### openNavigation(...)
 
 ```typescript
-import { Plugins } from '@capacitor/core';
-
-const { OpenGmaps } = Plugins;
-
-const request = {
-  query: 'Via Roma 15, Lecce' // address or coordinates
-};
-
-Plugins.OpenGmaps.openNavigation(request).then((result) => {
-  console.log('Result open gmaps', result);
-}).catch((error) => {
-  console.error('Error open gmaps', error);
-});
-
+openNavigation(request: OpenGmapsRequest) => any
 ```
+
+| Param         | Type                                                          |
+| ------------- | ------------------------------------------------------------- |
+| **`request`** | <code><a href="#opengmapsrequest">OpenGmapsRequest</a></code> |
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### OpenGmapsRequest
+
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`query`** | <code>string</code> |
+
+
+#### OpenGmapsResponse
+
+| Prop         | Type                 |
+| ------------ | -------------------- |
+| **`result`** | <code>boolean</code> |
+
+</docgen-api>

@@ -1,25 +1,11 @@
-import { WebPlugin, registerWebPlugin } from '@capacitor/core';
-import { OpenGmapsPlugin, OpenGmapsRequest, OpenGmapsResponse } from './definitions';
+import { WebPlugin } from '@capacitor/core';
+
+import type { OpenGmapsRequest, OpenGmapsResponse } from '.';
+import type { OpenGmapsPlugin } from './definitions';
 
 export class OpenGmapsWeb extends WebPlugin implements OpenGmapsPlugin {
-  constructor() {
-    super({
-      name: 'OpenGmaps',
-      platforms: ['web'],
-    });
+  async openNavigation(request: OpenGmapsRequest): Promise<OpenGmapsResponse> {
+    console.log('openNavigation', request);
+    return { result: true };
   }
-
-  async openNavigation(options: OpenGmapsRequest): Promise<OpenGmapsResponse> {
-    console.log(options);
-    return {
-      result: true
-    };
-  }
-
 }
-
-const OpenGmaps = new OpenGmapsWeb();
-
-export { OpenGmaps };
-
-registerWebPlugin(OpenGmaps);

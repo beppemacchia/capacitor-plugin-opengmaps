@@ -1,23 +1,19 @@
 package com.cuvify.plugins.opengmaps;
 
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-
 import com.getcapacitor.JSObject;
-import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
 
 import android.content.Intent;
 import android.net.Uri;
 
-@NativePlugin
-public class OpenGmaps extends Plugin {
+@CapacitorPlugin(name = "OpenGmaps")
+public class OpenGmapsPlugin extends Plugin {
 
     @PluginMethod
     public void openNavigation(PluginCall call) {
-
         String query = call.getString("query");
 
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + query);
@@ -26,8 +22,6 @@ public class OpenGmaps extends Plugin {
         getContext().startActivity(mapIntent);
         JSObject res = new JSObject();
         res.put("result", true);
-        call.success(res);
-        
+        call.resolve(res);
     }
-
 }
