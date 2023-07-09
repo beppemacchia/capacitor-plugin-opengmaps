@@ -20,14 +20,14 @@ Build and install yourself
 ### openNavigation(...)
 
 ```typescript
-openNavigation(request: OpenGmapsRequest) => any
+openNavigation(request: OpenGmapsRequest) => Promise<OpenGmapsResponse>
 ```
 
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
 | **`request`** | <code><a href="#opengmapsrequest">OpenGmapsRequest</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#opengmapsresponse">OpenGmapsResponse</a>&gt;</code>
 
 --------------------
 
@@ -35,17 +35,17 @@ openNavigation(request: OpenGmapsRequest) => any
 ### Interfaces
 
 
-#### OpenGmapsRequest
-
-| Prop        | Type                |
-| ----------- | ------------------- |
-| **`query`** | <code>string</code> |
-
-
 #### OpenGmapsResponse
 
 | Prop         | Type                 |
 | ------------ | -------------------- |
 | **`result`** | <code>boolean</code> |
+
+
+#### OpenGmapsRequest
+
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`query`** | <code>string</code> |
 
 </docgen-api>
